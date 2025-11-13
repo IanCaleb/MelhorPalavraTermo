@@ -1,8 +1,8 @@
 import math
 from collections import Counter
 
-with open("palavras_5letras.txt", "r", encoding="utf-8") as f:
-    palavras = [p.strip().lower() for p in f]
+with open(r"C:\Users\Ian Caleb\OneDrive\Área de Trabalho\MTermo\MelhorPalavraTermo\palavras_5letras.txt", "r", encoding="utf-8") as f:
+    palavras = [p.strip().lower() for p in f if len(p.strip()) == 5]
 
 def gerar_feedback(tentativa, alvo):
     resultado = ["0"] * 5
