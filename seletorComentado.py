@@ -53,15 +53,20 @@ def gerar_feedback(tentativa, alvo):
 
 # Calcular entropia de uma palavra
 def entropia(palavra, lista):
+    # Vai contar quantas vezes o padrão aparece
     contagem = Counter(gerar_feedback(palavra, alvo) for alvo in lista)
     total = len(lista)
+    # Converte em probabilidade (Se esse padão aparece x vezes e tem y palavras, qual a probabilidade dele aprecer)
     probs = [v / total for v in contagem.values()]
+    # A formula da entropia
     return -sum(p * math.log2(p) for p in probs)
 
 # --- 4. Avaliar todas as palavras ---
+# Vai aplicar a formula de entropia para cada palavra
 resultados = [(p, entropia(p, palavras)) for p in palavras]
 
 # --- 5. Ordenar por entropia ---
+# Orenar as palavras pelo resultado que deu na formula
 resultados.sort(key=lambda x: x[1], reverse=True)
 
 # --- 6. Exibir as melhores e piores ---
@@ -72,5 +77,3 @@ for p, h in resultados[:10]:
 print("\nPiores palavras:")
 for p, h in resultados[-10:]:
     print(f"{p}: {h:.3f} bits")
-
-    
